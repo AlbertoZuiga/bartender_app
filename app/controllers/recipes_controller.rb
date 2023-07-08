@@ -18,36 +18,41 @@ class RecipesController < ApplicationController
   
   def create
     @recipe = Recipe.new(recipe_params)
+    
     ingredients = params["recipe"]["recipe_ingredients"].split(",")
     ingredients = ingredients.map(&:upcase)
-    
-    debugger
     for ingredient in ingredients
       @recipe.ingredients << Ingredient.find_or_create_by(name: ingredient)
     end
-    debugger
-
+    
     respond_to do |format|
-        if @recipe.save
-          format.html { redirect_to recipe_url(@recipe), notice: "Ticket was successfully created." }
-          format.json { render :show, status: :created, location: @recipe }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @recipe.errors, status: :unprocessable_entity }
-        end
+      if @recipe.save
+
+        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
     end
   end
   
   def update
-      respond_to do |format|
-          if @recipe.update(recipe_params)
-            format.html { redirect_to recipe_url(@recipe), notice: "Ticket was successfully created." }
-            format.json { render :show, status: :created, location: @recipe }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @recipe.errors, status: :unprocessable_entity }
-          end
+    ingredients = params["recipe"]["recipe_ingredients"].split(",")
+    ingredients = ingredients.map(&:upcase)
+    for ingredient in ingredients
+      @recipe.ingredients << Ingredient.find_or_create_by(name: ingredient)
+    end
+    
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   def destroy

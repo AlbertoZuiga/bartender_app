@@ -16,18 +16,17 @@
     <%= form.text_field :name, class: "form-control" %>
   </div>
   
-  <% if action_name=="new" %>
-    <div class="mb-3">
-      <%= form.label :ingredients, class: "form-label" %>
-      <%= form.text_field :recipe_ingredients, class: "form-control" %>
-    </div>
-  <% end %>
+  <div class="mb-3">
+    <%= form.label :ingredients, class: "form-label" %>
+    <%= form.text_field :recipe_ingredients, class: "form-control" %>
+  </div>
+
   <div class="row">
     <div class="col">
-        <% if action_name=="new" %>
-            <%= link_to "CANCEL", recipes_path, class: "btn btn-secondary" %>
-        <% else %>
+        <% if action_name == "edit" %>
             <%= link_to "CANCEL", recipe_path(recipe), class: "btn btn-secondary" %>
+        <% else %>
+            <%= link_to "CANCEL", recipes_path, class: "btn btn-secondary" %>
         <% end %>
     </div>
     <div class="col">

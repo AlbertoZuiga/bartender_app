@@ -18,10 +18,10 @@
   
   <div class="row">
     <div class="col">
-        <% if action_name=="new" %>
-            <%= link_to "CANCEL", ingredients_path, class: "btn btn-secondary" %>
-        <% else %>
+        <% if action_name == "edit" %>
             <%= link_to "CANCEL", ingredient_path(ingredient), class: "btn btn-secondary" %>
+        <% else %>
+            <%= link_to "CANCEL", ingredients_path, class: "btn btn-secondary" %>
         <% end %>
     </div>
     <div class="col">
