@@ -1,5 +1,9 @@
-<div class="card">
-    <h4> <%= recipe.name  %> </h4>
-    <p> <%= recipe.description %> </p>
-    <p> <%= recipe.instruction %> </p>
+<div class="col-md-4 mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to recipe.name, recipe_path(recipe) %></h5>
+      <p class="card-text"><%= recipe.description %></p>
+      <p class="card-text"><%= recipe.instruction %></p>
+    </div>
+  </div>
 </div>
