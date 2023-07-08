@@ -1,0 +1,31 @@
+<%= form_with(model: recipe, class: "nice-form") do |form| %>
+  <% if @recipe.errors.any? %>
+    <div class="error-message">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+        <% @recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+        <% if action_name=="new" %>
+            <%= link_to "CANCEL", recipes_path, class: "btn btn-secondary" %>
+        <% else %>
+            <%= link_to "CANCEL", recipe_path(recipe), class: "btn btn-secondary" %>
+        <% end %>
+    </div>
+    <div class="col">
+        <%= form.submit "SAVE", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -4,4 +4,10 @@
   <div class="row">
     <%= render partial: "recipe", collection: @recipes %>
   </div>
+
+  <div class="row">
+    <div class="col"> 
+      <%= link_to "NEW", new_recipe_path, class:"btn btn-success" %>
+    </div>
+  </div>
 </div>
