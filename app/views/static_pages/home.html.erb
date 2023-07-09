@@ -1,1 +1,58 @@
 <h1>Esto es la pagina de inicio</h1>
+
+<div id="make_recipes"></div>
+
+<h5 class="mt-4">Ingredients:</h5>
+    <% @ingredients.each do |item| %>
+        <div>
+            <input type="checkbox" class="item-checkbox" data-id="<%= item.id %>" onchange="findRecipes()">
+            <%= item.name %>
+        </div>
+    <% end %>
+</div>
+
+<script>
+function findRecipes() {
+  const checkboxes = document.querySelectorAll('.item-checkbox');
+  let ingredientsId = [];
+
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      const itemId = parseFloat(checkbox.getAttribute('data-id'));
+      ingredientsId.push(itemId);
+    }
+  });
+
+  const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
+
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        displayList(response.recipes);
+      } else {
+        console.error('Error:', xhr.status);
+      }
+    }
+  };
+
+  xhr.open('POST', '/static_pages/find_recipes', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-CSRF-Token', authenticityToken);
+  xhr.send(JSON.stringify({ ingredientsId }));
+}
+
+function displayList(ingredients) {
+  let contenedor = document.getElementById('make_recipes');
+  contenedor.innerHTML = '';
+  let ul = document.createElement('ul');
+
+  for (let i = 0; i < ingredients.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = ingredients[i];
+    ul.appendChild(li);
+  }
+  contenedor.appendChild(ul);
+}
+</script>
