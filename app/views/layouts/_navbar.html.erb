@@ -13,10 +13,39 @@
           <%= link_to "Ingredients", ingredients_path, class:"nav-link active" %>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      <%= form_with(class: "d-flex", id: "search-form") do |form| %>
+        <%= form.text_field :query, class: "form-control me-2", placeholder:"Search" %>
+        <%= form.submit class: "btn btn-outline-success" %>
+      <% end %>
+
     </div>
   </div>
 </nav>
+
+<div id="search-results"></div>
+
+<script>
+// Obtener el formulario de búsqueda y el div de resultados
+const form = document.querySelector('#search-form');
+const resultsDiv = document.querySelector('#search-results');
+
+// Escuchar el evento de envío del formulario
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir el envío del formulario
+
+  // Obtener el valor del campo de búsqueda
+  const query = form.querySelector('#query').value;
+
+  // Realizar una solicitud AJAX para obtener los resultados de búsqueda
+  const request = new XMLHttpRequest();
+  request.open('GET', `/search?query=${encodeURIComponent(query)}`);
+  request.onload = function() {
+    if (request.status === 200) {
+      // Actualizar el contenido del div con los resultados de búsqueda
+      resultsDiv.innerHTML = request.responseText;
+    }
+  };
+  request.send();
+});
+</script>

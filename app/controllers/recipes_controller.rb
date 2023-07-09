@@ -2,7 +2,18 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy]
 
   def index
-      @recipes = Recipe.all
+    @recipes = Recipe.all
+  end
+
+  def search
+    query = params[:query].downcase
+    if query.size > 0
+      @recipes = Recipe.joins(:ingredients).where("lower(recipes.name) LIKE :query OR lower(ingredients.name) LIKE :query", query: "%#{query}%").distinct
+    else
+      @recipes = []
+    end
+
+    render partial: 'layouts/search_results'
   end
 
   def show
