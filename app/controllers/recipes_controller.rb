@@ -8,12 +8,12 @@ class RecipesController < ApplicationController
   def search
     query = params[:query].downcase
     if query.size > 0
-      @recipes = Recipe.joins(:ingredients).where("lower(recipes.name) LIKE :query OR lower(ingredients.name) LIKE :query", query: "%#{query}%").distinct
+      recipes = Recipe.joins(:ingredients).where("lower(recipes.name) LIKE :query OR lower(ingredients.name) LIKE :query", query: "%#{query}%").distinct.select(:id, :name)
     else
-      @recipes = []
+      recipes = []
     end
 
-    render partial: 'layouts/search_results'
+    render json: { recipes: recipes }
   end
 
   def show
