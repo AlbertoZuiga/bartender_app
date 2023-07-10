@@ -6,7 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- CSS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "star_rating", "data-turbo-track": "reload" %>
+
+    <!-- JAVASCRIPT -->
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_include_tag "static_pages_find_recipes" %>
     <%= javascript_include_tag "recipes_search" %>
