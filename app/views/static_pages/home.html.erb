@@ -1,14 +1,19 @@
-<h1>Esto es la pagina de inicio</h1>
+<div class="container">
+  <h1 class="mt-4">Esto es la página de inicio</h1>
 
-<div id="make_recipes"></div>
-
-<h5 class="mt-4">Ingredients:</h5>
+  <h5 class="mt-4">Ingredients:</h5>
+  <div class="row">
     <% @ingredients.each do |item| %>
-        <div>
-            <input type="checkbox" class="item-checkbox" data-id="<%= item.id %>" onchange="findRecipes()">
-            <%= item.name %>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input item-checkbox mb-5" data-id="<%= item.id %>" onchange="findRecipes()">
+          <label class="form-check-label"><%= item.name %></label>
         </div>
+      </div>
     <% end %>
+  </div>
+
+  <div id="make_recipes"></div>
 </div>
 
 <script src="assets/static_pages_find_recipes.js"></script>
