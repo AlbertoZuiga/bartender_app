@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         const query = form.querySelector('#query').value;
+        form.querySelector('#query').value = '';
 
         const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -24,25 +25,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function displaySearch(recipes) {
         let contenedor = document.getElementById('search-results');
         contenedor.innerHTML = '';
+        contenedor.classList.add('mt-4')
 
         if (recipes.length === 0) {
-        let p = document.createElement('p');
-        p.textContent = 'No recipes found.';
-        contenedor.appendChild(p);
+            let p = document.createElement('p');
+            p.classList.add('text-center')
+            p.textContent = 'No recipes found.';
+            contenedor.appendChild(p);
         } else {
-        let ul = document.createElement('ul');
+            let div = document.createElement('div')
+            div.classList.add('row');
 
-        for (let i = 0; i < recipes.length; i++) {
-            let recipe = recipes[i];
-            let li = document.createElement('li');
-            let link = document.createElement('a');
-            link.href = '/recipes/' + recipe.id;
-            link.textContent = recipe.name;
-            li.appendChild(link);
-            ul.appendChild(li);
-        }
+            let ul = document.createElement('ul');
 
-        contenedor.appendChild(ul);
+            for (let i = 0; i < recipes.length; i++) {
+                let recipe = recipes[i];
+                let col = document.createElement('div');
+                col.classList.add('col-md-4', 'mb-4', 'text-center');
+            
+                let link = document.createElement('a');
+                link.classList.add('card');
+            
+                let cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+            
+                link.href = '/recipes/' + recipe.id;
+                cardBody.textContent = recipe.name;
+            
+                link.appendChild(cardBody);
+                col.appendChild(link);
+                div.appendChild(col);
+              }
+            
+              contenedor.appendChild(div);
         }
     }
 });
