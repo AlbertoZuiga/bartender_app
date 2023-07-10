@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
         recipes.each do |recipe|
             recipe_ingredients_ids = recipe.ingredients.pluck(:id)
             if recipe_ingredients_ids.all? { |elemento| ingredients_ids.include?(elemento) }
-                selected.push(recipe.name)
+                selected.push({ name: recipe.name, link: recipe_path(recipe) })
             end
         end
 
