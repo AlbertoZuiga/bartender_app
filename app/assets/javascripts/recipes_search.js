@@ -55,9 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.appendChild(cardBody);
                 col.appendChild(link);
                 div.appendChild(col);
-              }
-            
-              contenedor.appendChild(div);
+            }
+        
+            contenedor.appendChild(div);
         }
     }
 });
