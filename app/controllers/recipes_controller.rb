@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy]
+  before_action :set_recipe, only: %i[ show edit update destroy save]
 
   def index
     @recipes = Recipe.all
@@ -14,6 +14,16 @@ class RecipesController < ApplicationController
     end
 
     render json: { recipes: recipes }
+  end
+
+  def save
+    @rating = Rating.where(recipe: @recipe, user: current_user).first
+    if @rating == nil
+      Rating.create(recipe: @recipe, user: current_user, favorite: params[:format])
+    else
+      @rating.update(favorite: params[:format])
+    end
+    redirect_to recipe_path(@recipe)
   end
 
   def show
@@ -57,7 +67,7 @@ class RecipesController < ApplicationController
     
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
+        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }

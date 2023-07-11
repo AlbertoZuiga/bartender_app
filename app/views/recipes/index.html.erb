@@ -1,5 +1,13 @@
 <div class="container">
-  <h1 class="text-center mb-5">Este es el índice de recetas</h1>
+  <% if current_user && user_signed_in? %>
+    <h1 class="text-center mb-5">Recetas favoritas</h1>
+
+    <div class="row">
+      <%= render partial: "recipe", collection: current_user.favorite_recipes %>
+    </div>
+  <% end %>
+
+  <h1 class="text-center mb-5">Todas las recetas</h1>
 
   <div class="row">
     <%= render partial: "recipe", collection: @recipes %>

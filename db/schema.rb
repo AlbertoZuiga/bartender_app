@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_145800) do
   create_table "ratings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
-    t.integer "rating"
+    t.integer "rate"
     t.boolean "favorite"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

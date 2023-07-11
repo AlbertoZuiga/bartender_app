@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :ratings
 
-  def recipes
-    Recipe.all
+  def favorite_recipes
+    Recipe.where(id: Rating.where(user: self, favorite: true).pluck(:recipe_id))
   end
 
   validates :first_name, :last_name, :email, :password, presence: true

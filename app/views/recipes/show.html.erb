@@ -2,7 +2,7 @@
   <h1 class="text-center mb-4"><%= @recipe.name %></h1>
 
   <div class="row">
-    <div class="col-md-6 mb-4">
+    <div class="col-md-4 mb-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Description:</h5>
@@ -11,11 +11,20 @@
       </div>
     </div>
 
-    <div class="col-md-6 mb-4">
+    <div class="col-md-4 mb-4">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Instruction:</h5>
           <p class="card-text"><%= @recipe.instruction %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Rating:</h5>
+          <p class="card-text"><%= @recipe.rating %></p>
         </div>
       </div>
     </div>
@@ -29,8 +38,8 @@
 
   <div class="row">
     <div class="col-3"> <%= link_to "BACK", :back, class:"btn btn-secondary" %> </div>
-    <div class="col-3"></div>
-    <div class="col-3"></div>
+    <div class="col-3"> <%= link_to "UNSAVE", save_recipe_path(@recipe,false), class:"btn btn-primary" %> </div>
+    <div class="col-3"> <%= link_to "SAVE", save_recipe_path(@recipe,true) ,class:"btn btn-primary" %> </div>
     <div class="col-3"> <%= link_to "EDIT", edit_recipe_path(@recipe) ,class:"btn btn-primary" %> </div>
   </div>
 </div>
