@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   validates :first_name, :last_name, :email, :password, presence: true
 
-  enum :role, {
+  enum :profile, {
     normal: 0,
     admin: 1
   }
