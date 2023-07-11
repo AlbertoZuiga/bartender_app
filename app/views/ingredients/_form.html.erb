@@ -18,11 +18,7 @@
   
   <div class="row">
     <div class="col">
-        <% if action_name == "edit" %>
-            <%= link_to "CANCEL", ingredient_path(ingredient), class: "btn btn-secondary" %>
-        <% else %>
-            <%= link_to "CANCEL", ingredients_path, class: "btn btn-secondary" %>
-        <% end %>
+        <%= link_to "CANCEL", :back, class: "btn btn-secondary" %>
     </div>
     <div class="col">
         <%= form.submit "SAVE", class: "btn btn-primary" %>
