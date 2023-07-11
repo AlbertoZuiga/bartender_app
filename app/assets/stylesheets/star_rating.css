@@ -29,4 +29,8 @@
 
 .rating > input:checked ~ label {
     color: #ffa723;
-}  
+} 
+
+.hidden-text {
+    display: none;
+}

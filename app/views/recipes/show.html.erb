@@ -43,3 +43,35 @@
     <div class="col-3"> <%= link_to "EDIT", edit_recipe_path(@recipe) ,class:"btn btn-primary" %> </div>
   </div>
 </div>
+
+<div class="vr mt-5"></div>
+
+<%= form_with(url: rate_recipe_path(@recipe), method: :post) do |form| %>
+  <div class="rating">
+    <%= form.radio_button :rate, 5, id: "star5" %>
+    <%= form.label "star5", class: "star-label", title: "text" do %>
+      <span class="hidden-text">Star 5</span>
+    <% end %>
+    
+    <%= form.radio_button :rate, 4, id: "star4" %>
+    <%= form.label "star4", class: "star-label", title: "text" do %>
+      <span class="hidden-text">Star 4</span>
+    <% end %>
+ 
+    <%= form.radio_button :rate, 3, id: "star3" %>
+    <%= form.label "star3", class: "star-label", title: "text" do %>
+      <span class="hidden-text">Star 3</span>
+    <% end %>
+ 
+    <%= form.radio_button :rate, 2, id: "star2" %>
+    <%= form.label "star2", class: "star-label", title: "text" do %>
+      <span class="hidden-text">Star 2</span>
+    <% end %>
+ 
+    <%= form.radio_button :rate, 1, id: "star1" %>
+    <%= form.label "star1", class: "star-label", title: "text" do %>
+      <span class="hidden-text">Star 1</span>
+    <% end %> 
+  </div>
+  <%= form.submit "Guardar" %>
+<% end %>

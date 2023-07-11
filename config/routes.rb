@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :recipes
 
   get 'recipes/:id/save', to: 'recipes#save', as: 'save_recipe'
+  post 'recipes/:id/rate', to: 'recipes#rate', as: 'rate_recipe'
 
   post 'static_pages/find_recipes', to: 'static_pages#find_recipes'
   post 'search', to: 'recipes#search', as: 'search'

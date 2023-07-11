@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy save]
+  before_action :set_recipe, only: %i[ show edit update destroy save rate]
 
   def index
     @recipes = Recipe.all
@@ -17,13 +17,23 @@ class RecipesController < ApplicationController
   end
 
   def save
-    @rating = Rating.where(recipe: @recipe, user: current_user).first
-    if @rating == nil
+    rating = Rating.where(recipe: @recipe, user: current_user).first
+    if rating == nil
       Rating.create(recipe: @recipe, user: current_user, favorite: params[:format])
     else
-      @rating.update(favorite: params[:format])
+      rating.update(favorite: params[:format])
     end
     redirect_to recipe_path(@recipe)
+  end
+  
+  def rate
+    rating = Rating.where(recipe: @recipe, user: current_user).first
+    if rating == nil
+      Rating.create(recipe: @recipe, user: current_user, rate: params[:rate])
+    else
+      rating.update(rate: params[:rate])
+    end
+    redirect_to recipe_path(@recipe)    
   end
 
   def show
