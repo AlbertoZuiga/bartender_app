@@ -1,4 +1,5 @@
-function findRecipes() {
+function findRecipes(id) {
+    console.log(id)
     const checkboxes = document.querySelectorAll('.item-checkbox');
     let ingredientsId = [];
     
