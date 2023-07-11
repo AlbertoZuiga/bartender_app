@@ -6,7 +6,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(first_name: "Alberto", last_name: "Zúñiga", password: "12345678", email: "albertozm2381@gmail.com", profile: 1)
+User.create(first_name: "Alberto", last_name: "Zúñiga", password: "password", email: "albertozm2381@gmail.com", profile: 1)
+User.create(first_name: "Alberto", last_name: "1", password: "password", email: "ejemplo1@gmail.com", profile: 0)
+User.create(first_name: "Alberto", last_name: "2", password: "password", email: "ejemplo2@gmail.com", profile: 0)
+User.create(first_name: "Alberto", last_name: "3", password: "password", email: "ejemplo3@gmail.com", profile: 0)
+User.create(first_name: "Alberto", last_name: "4", password: "password", email: "ejemplo4@gmail.com", profile: 0)
+User.create(first_name: "Alberto", last_name: "5", password: "password", email: "ejemplo5@gmail.com", profile: 0)
 
 Ingredient.create(name: "VINO AÑEJO")
 Ingredient.create(name: "COÑAC")
