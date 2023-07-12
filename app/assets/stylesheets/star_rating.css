@@ -6,7 +6,6 @@
 .rating:not(:checked) > label {
     float: right;
     cursor: pointer;
-    font-size: 50px;
     color: #666;
 }
 
@@ -34,3 +33,12 @@
 .hidden-text {
     display: none;
 }
+
+.star {
+    color: #666;
+}
+
+.star.yellow {
+    color: #ffa723;
+}
+  
