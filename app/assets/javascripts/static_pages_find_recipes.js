@@ -1,14 +1,11 @@
 function findRecipes(id) {
-    console.log(id)
-    const checkboxes = document.querySelectorAll('.item-checkbox');
-    let ingredientsId = [];
+    if (document.querySelector('#ingredient-checkbox-'+id).checked){
+        check = true
+    } else{
+        check = false
+    };
     
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked) {
-        const itemId = parseFloat(checkbox.getAttribute('data-id'));
-        ingredientsId.push(itemId);
-        }
-    });
+    let ingredient = {ingredient_id: id, checked: check};
     
     const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
     
@@ -27,7 +24,7 @@ function findRecipes(id) {
     xhr.open('POST', '/static_pages/find_recipes', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-CSRF-Token', authenticityToken);
-    xhr.send(JSON.stringify({ ingredientsId }));
+    xhr.send(JSON.stringify({ ingredient }));
 }
     
 function displayList(recipes) {

@@ -6,7 +6,13 @@ class StaticPagesController < ApplicationController
     end
     
     def find_recipes
-        ingredients_ids = params[:ingredientsId]
+        ingredient = Ingredient.find(params[:ingredient][:ingredient_id])
+        if params[:ingredient][:checked]
+            current_user.ingredients << ingredient
+        else
+            current_user.ingredients.delete(ingredient)
+        end
+        ingredients_ids = current_user.ingredients.pluck(:id)
 
         recipes = Recipe.all
         selected = []
