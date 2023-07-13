@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_recipe, only: %i[ show edit update destroy save rate]
 
   def index
@@ -23,7 +24,7 @@ class RecipesController < ApplicationController
     else
       rating.update(favorite: params[:recipe][:checked])
     end
-    redirect_to recipe_path(@recipe)
+    render json: { rating: rating }
   end
   
   def rate

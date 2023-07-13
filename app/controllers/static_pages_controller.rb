@@ -1,6 +1,4 @@
 class StaticPagesController < ApplicationController
-    skip_before_action :authenticate_user!
-
     def home
         @ingredients = Ingredient.all
     end

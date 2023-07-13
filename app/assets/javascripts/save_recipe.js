@@ -4,7 +4,6 @@ function saveRecipe(id) {
     } else{
         check = false
     };
-    console.log(check)
 
     let recipe = {recipe_id: id, checked: check};
 
