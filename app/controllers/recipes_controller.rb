@@ -19,9 +19,9 @@ class RecipesController < ApplicationController
   def save
     rating = Rating.where(recipe: @recipe, user: current_user).first
     if rating == nil
-      Rating.create(recipe: @recipe, user: current_user, favorite: params[:format])
+      Rating.create(recipe: @recipe, user: current_user, favorite: params[:recipe][:format])
     else
-      rating.update(favorite: params[:format])
+      rating.update(favorite: params[:recipe][:checked])
     end
     redirect_to recipe_path(@recipe)
   end

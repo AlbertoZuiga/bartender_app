@@ -1,6 +1,18 @@
 <div class="container">
   <h1 class="text-center mb-4"><%= @recipe.name %></h1>
 
+
+  <label class="ui-bookmark">
+    <input type="checkbox" id="save-recipe-<%= @recipe.id %>" onchange="saveRecipe(<%= @recipe.id %>)" <%= current_user.favorite_recipes.include?(@recipe) ? 'checked' : '' %> >
+    <div class="bookmark">
+      <svg viewBox="0 0 32 32">
+        <g>
+          <path d="M27 4v27a1 1 0 0 1-1.625.781L16 24.281l-9.375 7.5A1 1 0 0 1 5 31V4a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4z"></path>
+        </g>
+      </svg>
+    </div>
+  </label>
+
   <div class="row">
     <div class="col-md-4 mb-4">
       <div class="card">
@@ -44,8 +56,8 @@
 
   <div class="row">
     <div class="col-3"> <%= link_to "BACK", :back, class:"btn btn-secondary" %> </div>
-    <div class="col-3"> <%= link_to "UNSAVE", save_recipe_path(@recipe,false), class:"btn btn-primary" %> </div>
-    <div class="col-3"> <%= link_to "SAVE", save_recipe_path(@recipe,true) ,class:"btn btn-primary" %> </div>
+    <div class="col-3"> </div>
+    <div class="col-3"> </div>
     <div class="col-3"> <%= link_to "EDIT", edit_recipe_path(@recipe) ,class:"btn btn-primary" %> </div>
   </div>
 </div>
