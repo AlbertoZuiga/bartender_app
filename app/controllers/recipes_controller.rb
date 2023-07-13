@@ -55,15 +55,15 @@ class RecipesController < ApplicationController
     else
       rating.update(rate: params[:rate])
     end
-    redirect_to recipe_path(@recipe)    
+    render json: { rating: rating }
   end
-
+  
   def show
-      @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
-      @recipe = Recipe.new
+    @recipe = Recipe.new
   end
 
   def edit
