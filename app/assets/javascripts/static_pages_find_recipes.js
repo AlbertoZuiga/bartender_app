@@ -21,7 +21,7 @@ function findRecipes(id) {
         }
     };
     
-    xhr.open('POST', '/static_pages/find_recipes', true);
+    xhr.open('POST', '/recipes/find', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('X-CSRF-Token', authenticityToken);
     xhr.send(JSON.stringify({ ingredient }));

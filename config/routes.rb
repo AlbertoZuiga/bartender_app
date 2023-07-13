@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   post 'recipes/:id/save', to: 'recipes#save', as: 'save_recipe'
   post 'recipes/:id/rate', to: 'recipes#rate', as: 'rate_recipe'
+  post 'recipes/find', to: 'recipes#find'
 
-  post 'static_pages/find_recipes', to: 'static_pages#find_recipes'
   post 'search', to: 'recipes#search', as: 'search'
   delete '/recipes/:recipe_id/ingredients/:id/remove', to: 'ingredients#remove_from_recipe', as: 'remove_recipe_ingredient'
 end

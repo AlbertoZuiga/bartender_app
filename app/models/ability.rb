@@ -9,6 +9,8 @@ class Ability
       can :read, Recipe
       can :save, Recipe
       can :rate, Recipe
+      can :find, Recipe
+      can :search, Recipe
     end
   end
 end
