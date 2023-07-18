@@ -36,13 +36,16 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Rating:</h5>
-
-<div class="rating">
-  <% (1..5).each do |num| %>
-    <span class="star <%= num <= @recipe.rating ? 'yellow' : '' %>">★</span>
-  <% end %>
-</div>
-          <p class="card-text"><%= @recipe.rating %></p>
+          <% if @recipe.rating %>
+            <div class="rating">
+              <% (1..5).each do |num| %>
+                <span class="star <%= num <= @recipe.rating ? 'yellow' : '' %>">★</span>
+              <% end %>
+            </div>
+            <p class="card-text"><%= @recipe.rating %></p>
+          <% else %>
+            <p class="card-text">There is no ratings for this recipe yet</p>
+          <% end %>
         </div>
       </div>
     </div>

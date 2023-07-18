@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy save rate]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.sort_by { |recipe| recipe.rating.nil? ? 0 : recipe.rating }.reverse
   end
 
   def search
