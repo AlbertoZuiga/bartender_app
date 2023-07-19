@@ -37,12 +37,12 @@
         <div class="card-body">
           <h5 class="card-title">Rating:</h5>
           <% if @recipe.rating %>
-            <div class="rating">
+            <div class="rating" id="rating-star">
               <% (1..5).each do |num| %>
                 <span class="star <%= num <= @recipe.rating ? 'yellow' : '' %>">★</span>
               <% end %>
             </div>
-            <p class="card-text"><%= @recipe.rating %></p>
+            <p class="card-text" id='rating-recipe'><%= @recipe.rating %></p>
           <% else %>
             <p class="card-text">There is no ratings for this recipe yet</p>
           <% end %>
@@ -67,32 +67,16 @@
 
 <div class="vr mt-5"></div>
 
-<%= form_with(url: rate_recipe_path(@recipe), method: :post) do |form| %>
-  <div class="rating">
-    <%= form.radio_button :rate, 5, id: "star5" %>
-    <%= form.label "star5", class: "star-label", title: "text" do %>
-      <span class="hidden-text">Star 5</span>
-    <% end %>
-    
-    <%= form.radio_button :rate, 4, id: "star4" %>
-    <%= form.label "star4", class: "star-label", title: "text" do %>
-      <span class="hidden-text">Star 4</span>
-    <% end %>
- 
-    <%= form.radio_button :rate, 3, id: "star3" %>
-    <%= form.label "star3", class: "star-label", title: "text" do %>
-      <span class="hidden-text">Star 3</span>
-    <% end %>
- 
-    <%= form.radio_button :rate, 2, id: "star2" %>
-    <%= form.label "star2", class: "star-label", title: "text" do %>
-      <span class="hidden-text">Star 2</span>
-    <% end %>
- 
-    <%= form.radio_button :rate, 1, id: "star1" %>
-    <%= form.label "star1", class: "star-label", title: "text" do %>
-      <span class="hidden-text">Star 1</span>
-    <% end %> 
-  </div>
-  <%= form.submit "Guardar" %>
-<% end %>
+<div class="rating">
+  <input type="radio" id="star5-<%= @recipe.id %>" name="rate" value="5" onchange="rate_recipe( <%= @recipe.id %> , 5)" <%= @rate == 5 ? 'checked' : '' %> >
+  <label for="star5-<%= @recipe.id %>" title="text"></label>
+  <input type="radio" id="star4-<%= @recipe.id %>" name="rate" value="4" onchange="rate_recipe( <%= @recipe.id %> , 4)" <%= @rate == 4 ? 'checked' : '' %> >
+  <label for="star4-<%= @recipe.id %>" title="text"></label>
+  <input type="radio" id="star3-<%= @recipe.id %>" name="rate" value="3" onchange="rate_recipe( <%= @recipe.id %> , 3)" <%= @rate == 3 ? 'checked' : '' %> >
+  <label for="star3-<%= @recipe.id %>" title="text"></label>
+  <input type="radio" id="star2-<%= @recipe.id %>" name="rate" value="2" onchange="rate_recipe( <%= @recipe.id %> , 2)" <%= @rate == 2 ? 'checked' : '' %> >
+  <label for="star2-<%= @recipe.id %>" title="text"></label>
+  <input type="radio" id="star1-<%= @recipe.id %>" name="rate" value="1" onchange="rate_recipe( <%= @recipe.id %> , 1)" <%= @rate == 1 ? 'checked' : '' %> >
+  <label for="star1-<%= @recipe.id %>" title="text"></label>
+</div>
+

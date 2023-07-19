@@ -51,15 +51,21 @@ class RecipesController < ApplicationController
   def rate
     rating = Rating.where(recipe: @recipe, user: current_user).first
     if rating == nil
-      Rating.create(recipe: @recipe, user: current_user, rate: params[:rate])
+      Rating.create(recipe: @recipe, user: current_user, rate: params[:rating])
     else
-      rating.update(rate: params[:rate])
+      rating.update(rate: params[:rating])
     end
-    render json: { rating: rating }
+    render json: { rating: @recipe.rating }
   end
   
   def show
     @recipe = Recipe.find(params[:id])
+    rate = @recipe.ratings.where(user: current_user).first
+    if rate
+      @rate = rate.rate
+    else
+      @rate = nil
+    end
   end
 
   def new
