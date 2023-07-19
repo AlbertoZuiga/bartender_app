@@ -1,4 +1,4 @@
-function rate_recipe(id, rate) {
+function rateRecipe(id, rate) {
     
     const authenticityToken = document.querySelector('meta[name="csrf-token"]').content;
 

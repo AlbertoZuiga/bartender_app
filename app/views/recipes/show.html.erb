@@ -68,15 +68,15 @@
 <div class="vr mt-5"></div>
 
 <div class="rating">
-  <input type="radio" id="star5-<%= @recipe.id %>" name="rate" value="5" onchange="rate_recipe( <%= @recipe.id %> , 5)" <%= @rate == 5 ? 'checked' : '' %> >
+  <input type="radio" id="star5-<%= @recipe.id %>" name="rate" value="5" onchange="rateRecipe( <%= @recipe.id %> , 5)" <%= @rate == 5 ? 'checked' : '' %> >
   <label for="star5-<%= @recipe.id %>" title="text"></label>
-  <input type="radio" id="star4-<%= @recipe.id %>" name="rate" value="4" onchange="rate_recipe( <%= @recipe.id %> , 4)" <%= @rate == 4 ? 'checked' : '' %> >
+  <input type="radio" id="star4-<%= @recipe.id %>" name="rate" value="4" onchange="rateRecipe( <%= @recipe.id %> , 4)" <%= @rate == 4 ? 'checked' : '' %> >
   <label for="star4-<%= @recipe.id %>" title="text"></label>
-  <input type="radio" id="star3-<%= @recipe.id %>" name="rate" value="3" onchange="rate_recipe( <%= @recipe.id %> , 3)" <%= @rate == 3 ? 'checked' : '' %> >
+  <input type="radio" id="star3-<%= @recipe.id %>" name="rate" value="3" onchange="rateRecipe( <%= @recipe.id %> , 3)" <%= @rate == 3 ? 'checked' : '' %> >
   <label for="star3-<%= @recipe.id %>" title="text"></label>
-  <input type="radio" id="star2-<%= @recipe.id %>" name="rate" value="2" onchange="rate_recipe( <%= @recipe.id %> , 2)" <%= @rate == 2 ? 'checked' : '' %> >
+  <input type="radio" id="star2-<%= @recipe.id %>" name="rate" value="2" onchange="rateRecipe( <%= @recipe.id %> , 2)" <%= @rate == 2 ? 'checked' : '' %> >
   <label for="star2-<%= @recipe.id %>" title="text"></label>
-  <input type="radio" id="star1-<%= @recipe.id %>" name="rate" value="1" onchange="rate_recipe( <%= @recipe.id %> , 1)" <%= @rate == 1 ? 'checked' : '' %> >
+  <input type="radio" id="star1-<%= @recipe.id %>" name="rate" value="1" onchange="rateRecipe( <%= @recipe.id %> , 1)" <%= @rate == 1 ? 'checked' : '' %> >
   <label for="star1-<%= @recipe.id %>" title="text"></label>
 </div>
 
