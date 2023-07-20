@@ -1,5 +1,13 @@
-<% if current_user.admin? %>
-  <%= render partial: "index_admin" %>
-<% else %>
-  <%= render partial: "index_user" %>
-<% end %>
+<div class="container">
+  <% if current_user.admin? %>
+    <%= render partial: "index_admin" %>
+  <% else %>
+    <%= render partial: "index_user" %>
+  <% end %>
+  <div class="d-flex justify-content-between">
+    <%= link_to "BACK", root_path, class:"btn btn-secondary" %>
+    <% if current_user.admin? %>
+      <%= link_to "NEW", new_ingredient_path, class:"btn btn-success" %>
+    <% end %>
+  </div>
+</div>

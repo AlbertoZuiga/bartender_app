@@ -59,7 +59,9 @@
 
   <div class="d-flex justify-content-between">
     <%= link_to "BACK", :back, class:"btn btn-secondary" %>
-    <%= link_to "EDIT", edit_recipe_path(@recipe) ,class:"btn btn-primary" %>
+    <% if current_user.admin? %>
+      <%= link_to "EDIT", edit_recipe_path(@recipe) ,class:"btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 
