@@ -1,3 +1,10 @@
 <div class="container">
   <h1 class="mt-4">This is the home page</h1>
+
+  <div>
+    <%= link_to 'Select your ingredients', ingredients_path, class: "btn btn-primary" %>
+    <%= link_to 'Saved recipes', recipes_path('saved'), class: "btn btn-primary" %>
+    <%= link_to 'Recipes you can cook', recipes_path('current'), class: "btn btn-primary" %>
+    <%= link_to 'All recipes', recipes_path, class: "btn btn-primary" %>
+  </div>
 </div>

@@ -3,7 +3,22 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy save rate]
 
   def index
-    @recipes = Recipe.all.sort_by { |recipe| recipe.rating.nil? ? 0 : recipe.rating }.reverse
+    if params[:format] == 'saved'
+      @recipes = current_user.favorite_recipes      
+    elsif params[:format] == 'current'
+      ingredients_ids = current_user.ingredients.pluck(:id)
+      recipes = Recipe.all
+      selected = []
+      recipes.each do |recipe|
+          recipe_ingredients_ids = recipe.ingredients.pluck(:id)
+          if recipe_ingredients_ids.all? { |elemento| ingredients_ids.include?(elemento) }
+              selected.push(recipe)
+          end
+      end
+      @recipes = selected
+    else
+      @recipes = Recipe.all.sort_by { |recipe| recipe.rating.nil? ? 0 : recipe.rating }.reverse
+    end
   end
 
   def search
