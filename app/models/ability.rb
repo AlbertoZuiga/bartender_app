@@ -11,6 +11,7 @@ class Ability
       can :rate, Recipe
       can :find, Recipe
       can :search, Recipe
+      can :read, Ingredient
     end
   end
 end

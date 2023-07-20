@@ -9,11 +9,9 @@
         <li class="nav-item">
           <%= link_to "Recipes", recipes_path, class: "nav-link active" %>
         </li>
-        <% if can? :read, @ingredients %>
-          <li class="nav-item">
-            <%= link_to "Ingredients", ingredients_path, class: "nav-link active" %>
-          </li>
-        <% end %>
+        <li class="nav-item">
+          <%= link_to "Ingredients", ingredients_path, class: "nav-link active" %>
+        </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to current_user.full_name, edit_user_registration_path, class:"nav-link active" %>

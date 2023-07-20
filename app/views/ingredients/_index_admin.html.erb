@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="text-center mb-5">Este es el índice de ingredientes</h1>
+
+  <div class="row">
+    <%= render partial: "ingredient", collection: @ingredients %>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <%= link_to "BACK", root_path, class:"btn btn-secondary" %>
+    <%= link_to "NEW", new_ingredient_path, class:"btn btn-success" %>
+  </div>
+</div>
